@@ -99,34 +99,40 @@ function setupChatChannel(){
  * -------------------------------------------------------------- */
 const urlParams = new URLSearchParams(window.location.search);
 currentConversationId = urlParams.get('conversationid');
-
-const redirectUri = (new URL (window.location.href)).hostname == 'localhost' ?
-                config.testUri : config.prodUri;
+const token = urlParams.get('token');
 
 client.setEnvironment(config.genesysCloud.region);
-client.loginImplicitGrant(
-    config.clientID,
-    redirectUri,
-    { state: currentConversationId })
-.then(data => {
-    console.log(data);
 
-    // Assign conversation id
-    currentConversationId = data.state;
-    
+if (token) {
+    // We have a token from the backend OAuth exchange
+    client.setAccessToken(token);
+
     // Get Details of current User
-    return usersApi.getUsersMe();
-}).then(userMe => {
-    userId = userMe.id;
+    usersApi.getUsersMe()
+    .then(userMe => {
+        userId = userMe.id;
 
-    // Get current conversation
-    return conversationsApi.getConversation(currentConversationId);
-}).then((conv) => { 
-    currentConversation = conv;
+        // Get current conversation
+        return conversationsApi.getConversation(currentConversationId);
+    }).then((conv) => {
+        currentConversation = conv;
+        console.log(currentConversation);
 
-    return setupChatChannel();
-}).then(data => {
-    console.log('Finished Setup');
+        return setupChatChannel();
+    }).then(data => {
+        console.log('Finished Setup');
+    }).catch(e => console.log(e));
+} else {
+    // No token yet - redirect to Genesys Cloud authorize endpoint
+    const oauthCallbackUri = (new URL(window.location.href)).hostname == 'localhost' ?
+        `${config.testUri}oauth/callback` : `${config.prodUri}oauth/callback`;
 
-// Error Handling
-}).catch(e => console.log(e));
+    const authorizeUrl = `https://login.${config.genesysCloud.region}/oauth/authorize` +
+        `?response_type=code` +
+        `&client_id=${config.clientID}` +
+        `&redirect_uri=${encodeURIComponent(oauthCallbackUri)}` +
+        `&state=${encodeURIComponent(currentConversationId || '')}`;
+
+        console.log(authorizeUrl);
+    window.location.replace(authorizeUrl);
+}

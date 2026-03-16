@@ -46,7 +46,7 @@ A recommended Genesys Cloud role for the solutions engineer is Master Admin. For
 The Messaging Assistant integration has the following stages:
 
 - Download the repository containing the project files.
-- Create a Token Implicit OAuth Grant for Genesys Cloud.
+- Create a Code Authorization / PKCE OAuth Grant for Genesys Cloud.
 - Setup an Interaction Widget integration in Genesys Cloud.
 - Create a Genesys web messaging deployment and test the Messaging Assistant solution.
 
@@ -54,15 +54,18 @@ The Messaging Assistant integration has the following stages:
 
 1. Go to the [repository](https://github.com/GenesysCloudBlueprints/chat-assistant-blueprint) and clone it to your machine.
 
-### Create a Token Implicit OAuth Grant for Genesys Cloud
+### Create a Code Authorization / PKCE OAuth Grant for Genesys Cloud
 
-1. Login to your Genesys Cloud organization and create a new OAuth API (Token Implicit Grant). [Create an OAuth Client](https://help.mypurecloud.com/articles/create-an-oauth-client/)
+1. Login to your Genesys Cloud organization and create a new OAuth API (Code Authorization / PKCE). [Create an OAuth Client](https://help.mypurecloud.com/articles/create-an-oauth-client/)
 2. Assign your hosted site to the Authorized redirect URIs.
 3. In your local blueprint repository, open the [config.js](https://github.com/GenesysCloudBlueprints/chat-assistant-blueprint/blob/master/docs/scripts/config.js) file. Add the client ID from your OAuth client and specify the region where your Genesys Cloud organization is located, for example, `mypurecloud.ie` or `mypurecloud.com.au`.
 
-:::primary
-**Important**: By default, the integration works with Genesys Cloud environments located in Americas (US East): `mypurecloud.com`. If your Genesys Cloud organization is located in another region, then in the **Initial Setup** section of the `main.js` file, add `client.setEnvironment('{your Genesys Cloud environment}')`. For example, if your Genesys Cloud organization is located in Asia Pacific (Sydney), then add `client.setEnvironment('mypurecloud.com.au')`. For more information about the regions, see [Platform API](https://developer.mypurecloud.com/api/rest/ "Opens the Platform API page").
-:::
+  :::primary
+  **Important**: By default, the integration works with Genesys Cloud environments located in Americas (US East): `mypurecloud.com`. If your Genesys Cloud organization is located in another region, then in the **Initial Setup** section of the `main.js` file, add `client.setEnvironment('{your Genesys Cloud environment}')`. For example, if your Genesys Cloud organization is located in Asia Pacific (Sydney), then add `client.setEnvironment('mypurecloud.com.au')`. For more information about the regions, see [Platform API](https://developer.mypurecloud.com/api/rest/ "Opens the Platform API page").
+  :::
+
+4. Create an .env file in the directory folder and provide values for the following variables: `GENESYSCLOUD_OAUTHCLIENT_ID`, `GENESYSCLOUD_OAUTHCLIENT_SECRET`, and `GENESYSCLOUD_REGION`.
+
 
 ### Run Locally
 1. Open a terminal in the project directory and install the dependencies in the local node-modules folder.
