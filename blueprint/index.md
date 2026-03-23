@@ -61,7 +61,7 @@ The Messaging Assistant integration has the following stages:
 3. In your local blueprint repository, open the [config.js](https://github.com/GenesysCloudBlueprints/chat-assistant-blueprint/blob/master/docs/scripts/config.js) file. Add the client ID from your OAuth client and specify the region where your Genesys Cloud organization is located, for example, `mypurecloud.ie` or `mypurecloud.com.au`.
 
   :::primary
-  **Important**: By default, the integration works with Genesys Cloud environments located in Americas (US East): `mypurecloud.com`. If your Genesys Cloud organization is located in another region, then in the **Initial Setup** section of the `main.js` file, add `client.setEnvironment('{your Genesys Cloud environment}')`. For example, if your Genesys Cloud organization is located in Asia Pacific (Sydney), then add `client.setEnvironment('mypurecloud.com.au')`. For more information about the regions, see [Platform API](https://developer.mypurecloud.com/api/rest/ "Opens the Platform API page").
+  **Important**: By default, the integration works with Genesys Cloud environments located in Americas (US East): `mypurecloud.com`. If your Genesys Cloud organization is located in another region, then in the **Initial Setup** section of the `main.js` file, add `client.setEnvironment('{your Genesys Cloud environment}')`. For example, if your Genesys Cloud organization is located in Asia Pacific (Sydney), then add `client.setEnvironment('mypurecloud.com.au')`. For more information about the regions, see [Platform API](https://developer.genesys.cloud/api/rest/ "Opens the Platform API page").
   :::
 
 4. Create an .env file in the directory folder and provide values for the following variables: `GENESYS_CLIENT_ID`, `GENESYS_CLIENT_SECRET`, and `GENESYSCLOUD_REGION`.
@@ -99,7 +99,7 @@ https://genesyscloudblueprints.github.io/chat-assistant-blueprint/?conversationi
 https://localhost/?conversationid={{gcConversationId}}&language={{gcLangTag}}&environment={{gcTargetEnv}}
 ```
 
-   Select a group for filtering user acces to the widget.
+   Select a group for filtering user access to the widget.
 
    (Optional) Select specific queues for widget access.
 
@@ -131,13 +131,13 @@ https://localhost/?conversationid={{gcConversationId}}&language={{gcLangTag}}&en
 ### Create a Genesys web messaging deployment 
 #### Messenger Configuration 
 
-1. In Genesys Cloud, navigate to **Admin** > **Message** > **Messenger Configurations** and click **New Configuration**.
+1. In Genesys Cloud, navigate to **Menu** > **Digital and Telephony** > **Message** > **Messenger Configurations** and click **New Setup**.
 2. Fill in the configuration based on your needs.
 3. Click **Save New Version**.
 
 #### Messenger Deployment 
 
-1. In Genesys Cloud, navigate to **Admin** > **Message** > **Messenger Deployments** and click **New Deployment**.
+1. In Genesys Cloud, navigate to **Menu** > **Digital and Telephony** > **Message** > **Messenger Deployments** and click **New Deployment**.
 2. In **Select your Configuration**, select the **Messenger Configuration** you made previously.
 3. In **Select your Architect Flow**, select the **Switch from Voice Channel with Context**.
 4. Click **Save**.
@@ -146,7 +146,7 @@ https://localhost/?conversationid={{gcConversationId}}&language={{gcLangTag}}&en
 
 After you have created the Genesys Cloud objects, use a Messenger deployment to add a Messenger chat window to your website.
 
-1. Navigate to **Admin** > **Message** > **Messenger Deployments**. Select your Messenger Deployment.
+1. Navigate to **Menu** > **Digital and Telephony** > **Message** > **Messenger Deployments**. Select your Messenger Deployment.
 2. Under **Deploy your snippet**, click **Copy to Clipboard** to copy the snippet. Paste the snippet in the `<head>` tag of the web pages where you want the Messenger to appear.
 
 ### Test the solution
@@ -160,7 +160,7 @@ Clicking it will open the Messaging Assistant. The Messaging Assistant will acti
 ![Suggest Response](images/suggest-response.png "Suggest Response")
 
 ## Additional Resources
-* [Genesys Cloud Developer Center](https://developer.mypurecloud.com/)
-* [Genesys Cloud Platform Client SDK](https://developer.mypurecloud.com/api/rest/client-libraries/)
-* [Messaging Assistant Tutorial](https://developer.mypurecloud.com/api/tutorials/agent-chat-assistant/?language=javascript&step=1)
-* [Messaging Assistant Blog](https://developer.mypurecloud.com/blog/2020-02-19-agent-chat-assistant/)
+* [Genesys Cloud Developer Center](https://developer.genesys.cloud/)
+* [Genesys Cloud Platform Client SDK](https://developer.genesys.cloud/api/rest/client-libraries/)
+* [Messaging Assistant Tutorial](https://developer.genesys.cloud/api/tutorials/agent-chat-assistant/?language=javascript&step=1)
+* [Messaging Assistant Blog](https://developer.genesys.cloud/blog/2020-02-19-agent-chat-assistant/)
