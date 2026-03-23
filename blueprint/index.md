@@ -64,7 +64,7 @@ The Messaging Assistant integration has the following stages:
   **Important**: By default, the integration works with Genesys Cloud environments located in Americas (US East): `mypurecloud.com`. If your Genesys Cloud organization is located in another region, then in the **Initial Setup** section of the `main.js` file, add `client.setEnvironment('{your Genesys Cloud environment}')`. For example, if your Genesys Cloud organization is located in Asia Pacific (Sydney), then add `client.setEnvironment('mypurecloud.com.au')`. For more information about the regions, see [Platform API](https://developer.mypurecloud.com/api/rest/ "Opens the Platform API page").
   :::
 
-4. Create an .env file in the directory folder and provide values for the following variables: `GENESYSCLOUD_OAUTHCLIENT_ID`, `GENESYSCLOUD_OAUTHCLIENT_SECRET`, and `GENESYSCLOUD_REGION`.
+4. Create an .env file in the directory folder and provide values for the following variables: `GENESYS_CLIENT_ID`, `GENESYS_CLIENT_SECRET`, and `GENESYSCLOUD_REGION`.
 
 
 ### Run Locally
