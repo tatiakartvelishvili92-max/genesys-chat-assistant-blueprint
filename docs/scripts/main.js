@@ -6,6 +6,9 @@ import config from './config.js';
 const platformClient = require('platformClient');
 const client = platformClient.ApiClient.instance;
 
+// Frankfurt / Germany Genesys Cloud region
+client.setEnvironment('mypurecloud.de');
+
 // API instances
 const usersApi = new platformClient.UsersApi();
 const conversationsApi = new platformClient.ConversationsApi();
